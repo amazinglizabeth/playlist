@@ -1,0 +1,65 @@
+/* Quick and easy layed based page setup css
+   Use for basic web apps - see demo/webapp.html as an example
+*/
+
+body {
+    border : 0px;
+    margin : 0px;
+    padding : 0px;
+}
+
+/* using box-sizing for borders across all divs */
+div {
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+/* Use for top-level elements which include one of the anchor classes below
+   Include a child element for the content of the div.
+   Using anchor classes avoid different layers getting in each other's way.
+*/
+.layer {
+    position : absolute;
+    width : auto;
+    height : auto;
+}
+
+/* Anchors along the top of the screen - used for menus etc along the top */
+.anchortop{
+    top : 0px;
+    left : 0px;
+    right : 0px;
+}
+
+/* Anchors along the left of the screen - used for menus etc along the left */
+.anchorleft {
+    width : 0px;
+    top : 0px;
+    left : 0px;
+    bottom : 0px;
+}
+
+/* Anchors along the right of the screen - used for menus etc along the right */
+.anchorright {
+    width : 0px;
+    top : 0px;
+    right : 0px;
+    bottom : 0px;
+}
+
+/* Used for menus along the bottom of the screen, vertical popups etc */
+.anchorbottom {
+    right : 0px;
+    bottom : 0px;
+    width : 0px;
+    height : 0px;
+}
+
+/* Fills the screen (or parent element) - use for popups or large content elements */
+.fullscreen {
+    top : 0px;
+    left : 0px;
+    bottom : 0px;
+    right : 0px;
+}

@@ -1,0 +1,43 @@
+
+function enable_ace_editor(element, file_type, readonly, change_callback) {
+    var file_type_lookup = {
+        'js': 'javascript',
+        'json': 'javascript',
+        'html': 'html',
+        'css': 'css',
+        'py': 'python',
+
+        'javascript_snippet': 'javascript',
+        'jsdom_challenge': 'javascript',
+        'python_snippet': 'python'
+    }
+
+    var editor = ace.edit(
+        element,
+        { 
+            selectionStyle: "text",
+            fontSize: "14px",
+        });
+    editor.setOptions({
+        enableBasicAutocompletion: true,
+        wrap: true,
+        indentedSoftWrap: true,
+    });
+    editor.session.setMode("ace/mode/" + file_type_lookup[file_type]);
+    var session = editor.getSession();
+    session.setValue(element.value);
+    session.target_element = element;
+
+    if (readonly) {
+        editor.setReadOnly(true);
+    } else {
+        editor.getSession().on('change', (delta, session) => {
+            session.target_element.value = session.getValue();
+            turtlegui.val_changed(session.target_element);
+            if (change_callback) {
+                change_callback();
+            }
+        });
+    }
+}
+

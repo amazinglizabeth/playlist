@@ -1,0 +1,167 @@
+
+
+var console_shim = {
+
+    add_console_log: function (args) {
+        var msg = Array.prototype.join.call(args);
+        results_popup.results.print_log[results_popup.results.print_log.length] = msg;
+        challenge.reload(document.getElementById('id_console_log'));
+    },
+
+    shim_log: function () {
+        console_shim.add_console_log(arguments);
+        window.console.log.apply(this, arguments);
+    },
+
+    shim_info: function () {
+        console_shim.add_console_log(arguments);
+        window.console.info.apply(this, arguments);
+    },
+
+    shim_error: function () {
+        console_shim.add_console_log(arguments);
+        window.console.error.apply(this, arguments);
+    },
+
+    fire_event_at: function (event_id, element) {
+        if(document.createEvent){
+            event = document.createEvent("HTMLEvents");
+            event.initEvent(event_id, true, true);
+            event.eventName = event_id;
+            element.dispatchEvent(event);
+        } else {
+            event = document.createEventObject();
+            event.eventName = event_id;
+            event.eventType = event_id;
+            element.fireEvent("on" + event.eventType, event);
+        }
+    },
+
+}
+
+
+function Challenge() {
+    this.challenge = {};
+    this.selected_file = null;
+    this.last_edited = null;
+}
+
+
+Challenge.prototype.file_selected_class = function(is_selected) {
+    return (is_selected ? 'selected': '');
+}
+
+Challenge.prototype.run_browseable = function() {
+    throw "not implemented";
+}
+
+Challenge.prototype.select_file = function(file) {
+    this.selected_file = file;
+    this.reload();
+}
+
+Challenge.prototype.get_run_snippet_url = function() {
+    throw "not implemented";
+}
+
+Challenge.prototype.call_run_browseable_api = function() {
+    ajax.post(this.get_run_snippet_url(), {}, (responseText) => {
+        let response = JSON.parse(responseText);
+        if(response.ran_ok){
+            this.display_results(response);
+        } else {
+            this.display_errors(response.error_message);
+        }
+    })
+}
+
+Challenge.prototype.display_results = function(response) {
+    if (!output_console.result_url) {
+        output_console.result_url = this.get_run_files_url();
+    }
+    let iframe = document.getElementById("result_iframe");
+    output_console.tab_id = 'result';
+
+    iframe.src = output_console.result_url;
+
+    var shim_onload = function() {
+        iframe.contentWindow.console.log = console_shim.shim_log;
+        iframe.contentWindow.console.info = console_shim.shim_info;
+        iframe.contentWindow.console.error = console_shim.shim_error;
+
+        var imgs = iframe.contentWindow.document.getElementsByTagName('img');
+        for (var i=0; i<imgs.length; i++) {
+            if (imgs[i].onload) {
+                fire_event_at('load', imgs[i]);
+            }
+        }
+
+        setTimeout(function() {
+            var evt = iframe.contentDocument.createEvent('Event');
+            evt.initEvent('load', false, false);
+            iframe.contentWindow.dispatchEvent(evt);
+        }, 1);
+    }
+
+    iframe.addEventListener('load', shim_onload, {capture: true, once: true});
+    results_popup.results = response;
+    setTimeout(() => {
+        this.reload();
+    }, 1000)
+}
+
+Challenge.prototype.call_run_tests_api = function() {
+    var request = {
+        secret_files: this.challenge.secret_files,
+    };
+    ajax.post(this.get_run_tests_url(), request, (responseText) => {
+        let response = JSON.parse(responseText);
+        if(!response.ran_ok){
+            this.display_errors(response.error_message);
+        } else {
+            this.tests_ran(response);
+        }
+    }, (errorResponse) => {
+        let error_message = `Uh oh, the server encountered a ${errorResponse.status} error.`;
+        error_popup.server_error = true;
+
+        this.display_errors(error_message);
+    }) 
+}
+
+Challenge.prototype.call_run_snippet_api = function() {
+    var request = {
+        input_queue: results_popup.console_input_queue,
+        secret_files: this.challenge.secret_files,
+    };
+    ajax.post(this.get_run_snippet_url(), request, (responseText) => {
+        let response = JSON.parse(responseText);
+        if(!response.ran_ok){
+            this.display_errors(response.error_message);
+        } else {               
+            this.snippet_ran(this.challenge, JSON.parse(responseText));
+        }
+    }, (errorResponse) => {
+        let error_message = `Uh oh, the server encountered a ${errorResponse.status} error.`;
+        error_popup.server_error = true;
+
+        this.display_errors(error_message);
+    }) 
+}
+
+Challenge.prototype.tests_ran = function(results) {
+    results_popup.show_results(results);
+}
+
+Challenge.prototype.snippet_ran = function(challenge, results) {
+    output_console.show_console_results(results);
+}
+
+Challenge.prototype.display_errors = function(error_message) {
+    error_popup.visible = true;
+    error_popup.error_message = error_message;
+    results_popup.console_input_queue = [];
+    this.reload();
+}
+
+

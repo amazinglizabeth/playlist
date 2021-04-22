@@ -1,0 +1,793 @@
+/* Colour scheme */
+:root {
+    /*p for primary, s for secondary, t for tertiary
+    cta for call-to-action */
+    --p-orange: #e84610;
+    --p-blue: #009fe3;
+    --p-grey: #4a4a4f;
+    --p-navy: #445261;
+
+    --s-grey: #e6ecf0;
+    --s-yellow: #efb920;
+    --s-pink: #ff5a60;
+    --s-teal: #23bbbb;
+
+    --t-grey: #fafafa;
+    --t-darkgrey: #aaaaaa;
+    
+    --cta-teal: #008584;
+    --cta-orange: #ea2d00;
+    --cta-blue: #0074cc;
+    --cta-grey: #445261;
+    --cta-white: #ffffff;
+    --cta-hover: #e6ecf0;
+
+    
+  }
+
+p.added_text {
+    border: 5px solid pink;
+}
+
+
+*, .btn {
+    font-family: 'Montserrat', sans-serif;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
+#main {
+  font-weight: 500;
+}
+
+/* Generic buttons */
+.btn.btn-primary {
+    color: var(--cta-white);
+    background-color: var(--cta-grey);
+    border-color: var(--cta-grey);
+}
+
+.btn.btn-secondary {
+    color: var(--cta-grey);
+    background-color: var(--cta-white);
+    border-color: var(--cta-grey);
+}
+
+.btn.btn-info {
+  color: var(--cta-navy);
+  background-color: var(--cta-white);
+  border-color: var(--cta-grey);
+}
+
+/* Overwrite default edx styles for buttons on programme page */
+#expand-collapse-outline-all-button:hover,
+a:not([href]):not([tabindex]) {
+    color: var(--cta-white);
+    background-color: var(--cta-grey);
+}
+
+.btn.btn.btn-primary:hover,
+.btn.btn-secondary:hover {
+    color: var(--cta-grey);
+    background-color: var(--cta-hover);
+    border-color: var(--cta-hover);
+}
+
+.btn.btn-info:hover {
+    color: var(--cta-navy);
+    background-color: var(--cta-hover);
+    border-color: var(--cta-hover);
+}
+
+/* Navbar and header */
+.global-header {
+    border-bottom: 2px solid var(--s-grey);
+    box-shadow: none;
+}
+
+.navbar-nav .nav-item a.nav-link {
+    line-height: 16px;
+}
+
+.navbar-logo {
+  visibility: hidden;
+}
+.content-wrapper .course-tabs .nav-item.navbar-logo .nav-link {
+  padding: 3px 5px 8px 5px;
+}
+.content-wrapper .course-tabs .nav-item.navbar-logo a img {
+  height: 30px;
+  padding: 0px;
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index:100
+}
+
+.sticky + .content {
+  padding-top: 60px;
+}
+
+/* Main section */
+.content-wrapper {
+    max-width: 2800px;
+    padding: 0px;
+    margin-top: 0px;
+}
+
+/* Main section of programmes page */
+.view-dashboard, .view-dashboard .window-wrap {
+    background: var(--t-grey);
+}
+
+.global-header .header-logo a .logo {
+  height: 45px;
+}
+
+/* Course container */
+.container>div {
+    border : none;
+    box-shadow: none;
+}
+
+/* Course Tabs */
+.content-wrapper .course-tabs {
+    overflow-x : auto;
+    overflow-y: hidden;
+    height:44px;
+}
+
+/* "courseware" section uses slightly different css files to the "course" section, reiterating some rules: */
+.navbar.course-tabs.pb-0.navbar-expand {
+  /*height: 38px;*/
+  display: block;
+}
+
+.content-wrapper .course-tabs .navbar-nav {
+    display: flex;
+    flex-direction: row;
+    background-color: var(--t-grey);
+    border-bottom: 1px solid var(--s-grey);
+    padding: 0px 25px;
+    text-transform: uppercase;
+    height: 36px;
+    font-weight: 400;
+    z-index: 10;
+}
+
+.content-wrapper .course-tabs .nav-item {
+    font-size: 0.875rem;
+    justify-self: flex-start;
+}
+
+.content-wrapper .course-tabs .nav-item.support-link-gitpod {
+    margin-left: auto;
+    justify-self: flex-end;
+    width: 110px;
+}
+
+.content-wrapper .course-tabs .nav-item.support-link-slack {
+    justify-self: flex-end;
+    width: 110px;
+}
+
+.content-wrapper .course-tabs .nav-item.support-link-gitpod a,
+.content-wrapper .course-tabs .nav-item.support-link-slack a {
+  border-bottom: 0px;
+
+}
+
+.content-wrapper .course-tabs .nav-item.support-link-gitpod a:hover,
+.content-wrapper .course-tabs .nav-item.support-link-slack a:hover {
+  font-weight: 600;
+  color: var(--p-navy);
+  font-size: 15px;
+}
+
+.content-wrapper .course-tabs .nav-item.active .nav-link {
+    color: var(--p-grey);
+}
+
+.content-wrapper .course-tabs .nav-item.active .nav-link {
+    border-bottom-color: var(--p-orange);
+}
+
+.content-wrapper .course-tabs .nav-item:hover .nav-link {
+    border-bottom-color: var(--p-orange);
+}
+
+.content-wrapper .course-tabs .nav-item.support-link-gitpod:hover .nav-link,
+.content-wrapper .course-tabs .nav-item.support-link-slack:hover .nav-link
+ {
+  color: black;
+ }
+/* Specific programs page overrides */
+.page-header {
+    border : none;
+}
+
+.page-header .page-header-main {
+    flex-grow: 6;
+}
+
+.page-header .page-header-secondary {
+    flex: 1;
+}
+
+
+/* overriding odd lms-main.css border */
+.content-wrapper .course-tabs .nav-item .nav-link {
+    border-bottom: 0px;
+}
+
+.content-wrapper .course-tabs .nav-item .nav-link img {
+    height : 16px;
+}
+
+.content-wrapper .course-tabs .nav-item {
+    display: inline-block;
+}
+
+.content-wrapper .course-tabs .nav-item {
+  height: 36px;
+}
+
+.content-wrapper .course-tabs .nav-item .nav-link {
+    display: inline-block;
+    padding: 10px 0px 6px;
+    border-style: solid;
+    border-width: 0 0 4px 0;
+    border-bottom-color: transparent;
+    color: var(--p-grey);
+    text-align: -webkit-match-parent;
+    margin: 0px 15px;
+}
+
+
+/* Course Outline */
+.page-content.course-outline.accordion {
+  padding-bottom: 0px;
+}
+
+.course-outline .block-tree .section ol.outline-item .subsection .subsection-title {
+    color: var(--p-navy);
+}
+
+.course-outline .block-tree .outline-button .fa {
+    color: var(--p-grey);
+}
+
+.course-outline .block-tree .outline-button .fa.fa-check {
+    color: var(--cta-white);
+}
+
+.outline-item.section.course {
+    margin-left: 35px;
+}
+
+/* override default outline border on accordion */
+button.accordion-trigger:focus {
+    outline: none;
+}
+
+/* Breadcrumbs */
+.breadcrumbs .nav-item.nav-item-course a,
+.breadcrumbs .nav-item.nav-item-chapter a,
+.breadcrumbs .nav-item.nav-item-section a
+{
+    color: var(--p-blue);
+}
+
+/* Unit navigation */
+.xmodule_display.xmodule_SequenceModule .sequence-nav-button.focused, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav-button:hover, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav-button:active, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav-button.active, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav button.focused, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav button:hover, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav button:active, 
+.xmodule_display.xmodule_SequenceModule .sequence-nav button.active {
+    border-bottom: 3px solid var(--p-blue);
+}
+
+.xmodule_display.xmodule_SequenceModule .sequence-nav-button.button-next:hover,
+.xmodule_display.xmodule_SequenceModule .sequence-nav-button.button-previous:hover {
+    /*border: none;
+    background-color: var(--p-blue);
+    color: white;*/
+    border: 3px solid var(--p-blue);
+}
+
+/* XBlocks */
+.course-wrapper .course-content .xblock.xblock-student_view-vertical {
+    max-width : none;
+    margin-left : 20px;
+    margin-right : 20px;
+}
+
+/* Bookmark Button */
+.course-content .bookmark-button span.bookmark-text {
+    color: var(--p-blue);
+}
+
+.course-content .bookmark-button::before {
+    color: var(--p-blue);
+}
+
+.course-sidebar .section-tools .course-tool .course-tool-link {
+    color: var(--p-blue);
+}
+
+
+/* 3 Questions */
+.course-content .question-container {
+    display : inline-block;
+    width : 25%;
+    margin-right : 3%;
+    vertical-align : top;
+
+    padding : 20px;
+}
+.course-content .question-container p {
+    text-align : center;
+}
+
+.course-content .question-container img.question-img {
+    display: none; /* hiding this image - image to be removed from xblock markup */
+}
+
+.course-content .question-container p.question-text {
+    font-size : 1.2em;
+    font-weight : bold;
+    text-transform: uppercase;
+    color : var(--s-teal);
+}
+
+
+/* XBlock sections */
+.course-content .vert-mod .vert {
+}
+
+.course-content .vert-mod .vert section {
+    margin : 30px;
+}
+
+body.view-in-course .wrapper-footer {
+    margin-top: 0px;
+}
+
+/* Copyright Footer Section */
+.wrapper-footer {
+    background-color: var(--p-navy);
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 0px;
+    z-index: 10;
+}
+
+.wrapper-footer footer {
+  padding: 25px 10px 30px 10px;
+}
+
+.wrapper-footer footer .copyright {
+    color: var(--t-grey);
+    font-size: 0.8rem;
+}
+
+.wrapper-footer footer nav {
+  height: 1rem;
+}
+
+.wrapper-footer footer nav ul li {
+  margin-right: 1.5rem;
+  list-style-type: none;
+  float: left;
+  color: var(--t-grey);
+  font-size: 0.8rem;
+}
+
+.wrapper-footer footer nav ul li a:link,
+.wrapper-footer footer nav ul li a:active,
+.wrapper-footer footer nav ul li a:visited {
+  color: white!important;
+}
+
+.wrapper-footer footer nav ul li a:hover {
+  color: var(--p-white);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.wrapper-footer footer nav ul li a:before {
+  display: block;
+  content: attr(text);
+  font-weight: bold;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+}
+
+.wrapper-footer footer {
+  padding: 1rem;
+}
+
+.wrapper-footer * {
+  padding: 0px;
+  margin: 0px;
+}
+
+/* Login and password reset forms */
+.login-register {
+    background-color: var(--p-navy);
+    padding: 3% 5% 6% 5%;
+}
+
+#login-form h2,
+.login-register .form-field .field-link,
+.login-register-content h2,
+.login-register .action-label {
+    color: var(--t-grey);
+}
+
+button.action.action-primary {
+    background-color: var(--cta-teal);
+    text-transform: uppercase;
+    width: 100%;
+    box-shadow: none;
+}
+
+button.action.action-primary:hover {
+    background-color: var(--s-teal);
+}
+
+.login-register .input-block {
+    border: none;
+}
+
+.login-register .form-field input, .login-register .login-button {
+    border-radius: 5px;
+    min-height: 45px;
+    min-width: 300px;
+}
+
+.login-register .form-field .tip,
+.login-register .form-field label {
+    /* As per redesign, info is provided using form input placeholder rather than labels and tips */
+    display: none;
+}
+
+
+/* program list */
+
+.course-outline .block-tree .section .section-name .section-title {
+    font-size : 20px;
+    font-weight: 500;
+}
+
+/* indent text for section titles */
+.course-outline .block-tree .section.course .section-name .section-title {
+    font-size : 16px;
+    margin-left: 25px;
+}
+
+
+/* remove border from sections */
+.course-outline .block-tree .section {
+    border : 0px;
+    
+}
+
+button.section-name.accordion-trigger.outline-button {
+    border-bottom: 1px solid var(--s-grey);
+}
+
+/* relax margin on subsections to allow border to reach side of screen */
+.course-outline .block-tree .section ol.outline-item .subsection {
+    margin : 0px;
+    border-top: 0px;
+    border-bottom: 1px solid var(--s-grey)
+}
+
+
+/* Indent subsection header */
+.course-outline .block-tree .section ol.outline-item .subsection span.indent {
+    margin-left: 85px;
+}
+
+.course-outline .block-tree .outline-button .complete-checkmark {
+  background-color: var(--s-teal);
+  border: 1px solid var(--s-teal);
+}
+
+
+/* progress */
+.progress_bar {
+    display : flex;
+    vertical-align: top;
+}
+
+.progress_bar .indicator {
+    display : flex;
+    flex: 2;
+}
+
+.progress_bar .indicator .progress_title {
+    justify-self: flex-start;
+    align-self: center;
+    margin : 10px;
+}
+
+.progress_bar .indicator .progress_end_date {
+    justify-self: flex-end;
+    align-self: center;
+    margin : 10px;
+}
+
+.progress_bar .indicator .bar_wrapper {
+    flex: 1;
+    align-self: center;
+    border-radius: 5px;
+    height : 10px;
+}
+
+.progress_bar .indicator .bar_wrapper .bar_indicator {
+    position : relative;
+    width: 0px;
+    display: inline-block;
+}
+
+.progress_bar .bar_percentage{
+    position : relative;
+    top : -39px;
+    left : -16px;
+    background-image: url('/static/ci-theme/images/progress_pointer.png');
+    width : 32px;
+    height : 37px;
+    font-size: 10px;
+    font-weight: bold;
+    padding-top: 8px;
+    text-align: center;
+}
+
+.progress_bar .filler {
+    flex-grow: 1;
+}
+
+.progress_bar .btn {
+    margin-left : 40px;
+}
+
+
+.expand_all {
+    display : inline-block;
+}
+
+/* Upcoming dates */
+h3.hd.hd-6.upcoming-dates-header {
+    font-size: 1.2em;
+}
+
+/* Search */
+div.search_bar {
+    float: right;
+}
+
+div.search_bar input {
+    background: url('/static/ci-theme/images/search_icon.png') left center no-repeat;
+    height : 30px;
+    padding-left : 30px;
+}
+
+/* Programs */
+/*.program_container {
+  padding-bottom:100px;
+}*/
+.content-wrapper.main-container {
+  padding-bottom: 70px;
+}
+
+#programs_main {
+  padding-left: 110px;
+}
+
+.program_container .header {
+    font-size : 32px;
+    line-height: 32px;
+    font-weight: 400;
+    padding: 40px 0px 50px 0px;
+    height: auto;
+    margin-left: 40px;
+    color: var(--p-grey);
+}
+
+.program_list {
+    width : 80%;
+    margin-left: 40px;
+    margin-bottom: 0px;
+}
+
+.program_list .program_item {
+    border-width : 1px;
+    border-style : solid;
+    min-height : 200px;
+    display : flex;
+    flex-direction: row;
+    margin-bottom: 40px;
+    background-color: white;
+    color: var(--p-grey);
+    border-color: var(--s-grey);
+}
+
+.program_list .program_item .program_icon {
+    width : 200px;
+    padding : 20px 40px;
+}
+
+.program_list .program_item .program_icon img {
+  object-fit: cover;
+  object-position: 50% 50%;
+  width: 100%;
+  height: 100%;
+}
+
+.program_list .program_item .program_info {
+    width : 50%;
+    display : flex;
+    flex-direction: column;
+    padding : 40px;
+}
+
+.program_list .program_item .program_info {
+    padding : 40px;
+}
+
+.program_list .program_item .program_info .program_title {
+    margin-bottom : 10px;
+    font-size : 24px;
+    line-height: 24px;
+}
+
+.program_list .program_item .program_info .program_description {
+    line-height: 24px;
+    margin-top : 20px;
+    color: var(--secondary-color);
+}
+
+.program_list .program_item .program_view_button {
+    margin-left : auto;
+    padding : 40px;
+    align-self: flex-end;
+}
+
+.program_list .program_item .program_view_button a {
+    cursor: pointer;
+}
+
+.badge-pill {
+  margin-left: 0.5rem;
+}
+
+/* Milestone Projects */
+.dates-left-column {
+  width: 20px;
+}
+
+.date-summary-container .date-summary .right-column {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.date-summary-container .date-summary .right-column .heading {
+  font-weight: 400;
+}
+
+.hd.hd-6.date.localized-datetime {
+  color: var(--s-teal);
+  font-weight: 600;
+}
+
+.right-column.next-project p.hd.hd-6.date.localized-datetime,
+.right-column.next-project .hd.hd-6.heading {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.right-column.project-overdue {
+  opacity: .5;
+}
+
+/* XBlock specific */
+code {
+  background-color: var(--t-grey) !important;
+  color: var(--p-orange) !important;
+  padding: 2px !important;
+  border-radius: 2px !important;
+}
+
+pre {
+  background-color: var(--t-grey) !important;
+  padding: 0.5rem;
+  width: fit-content;
+  box-shadow: 0 0 3px var(--t-darkgrey); 
+}
+
+.course-outline .block-tree .section ol.outline-item .subsection.latest_block {
+  border-top: 2px solid var(--cta-blue);
+  border: 2px solid var(--cta-blue);
+}
+
+.selected_section {
+  border-top: 2px solid var(--p-blue)!important;
+  border: 2px solid var(--p-blue)!important;
+  border-radius: 5px!important;
+}
+
+/* Support tab */
+.card-img-top {
+    height: 50px;
+    width: 50px;
+}
+
+.card-text, .card-title {
+    text-align: center;
+}
+
+.support-link {
+    width: 100%;
+}
+
+.card-footer {
+    background-color: white;
+    border-top: none;
+}
+
+.support-tab-heading {
+    /*Overwrite default margin bottom for h1*/
+    margin-bottom: 10px;
+}
+
+/* Student Care support */
+#question {
+    width: 100%;
+    height: 200px;
+}
+
+.top-navigation, .mentor-cta, .slack-cta {
+    padding-top: 40px;
+    padding-bottom: 60px;
+}
+
+.top-navigation .container-fluid {
+    padding-left: 0px;
+    padding-right: 0px;
+}
+
+.accordion .card .card-header button {
+    color: var(--p-grey);
+}
+
+.accordion .card .card-header {
+    background-color: white;
+    border-bottom: none;
+}
+
+.accordion .card {
+    border: none;
+    border-top: 1px solid var(--s-grey);
+}
+
+/* Tutor tab */
+.form-check-label {
+    padding-top: 8px;
+}
+
+nav.sequence-bottom {
+    z-index: 0;
+}

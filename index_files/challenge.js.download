@@ -1,0 +1,382 @@
+
+
+function StudentChallenge() {
+    Challenge.call(this);
+}
+
+StudentChallenge.prototype = Object.create(Challenge.prototype);
+
+StudentChallenge.prototype.get_run_snippet_url = function() {
+    return '/sandbox/api/challenges/' + this.challenge._id + '/run';
+}
+
+
+StudentChallenge.prototype.get_run_files_url = function() {
+    return '/sandbox/api/challenges/' + this.challenge._id + '/files/' + this.challenge.files[0].name;
+}
+
+StudentChallenge.prototype.reset_files = function() {
+    ajax.delete('/sandbox/api/saved_attempts/' + this.challenge._id, (responseTest) => {
+        if(this.challenge.browseable){
+            document.getElementById("result_iframe").src = '';
+        }
+        this.load();
+    });
+}
+
+StudentChallenge.prototype.get_save_attempt_url = function() {
+    return '/sandbox/api/saved_attempts/' + this.challenge._id;
+}
+
+StudentChallenge.prototype.save_challenge = function(callback) {
+    ajax.put(this.get_save_attempt_url(), {'files': this.challenge.files}, (responseTest) => {
+        callback();
+    });
+}
+
+StudentChallenge.prototype.run_browseable = function() {
+    this.save_challenge(() => {
+        this.call_run_browseable_api();
+    });
+}
+
+StudentChallenge.prototype.run_tests = function(is_submission) {
+    this.is_submission = is_submission;
+
+    this.save_challenge(() => {
+        this.call_run_tests_api();
+    });
+}
+
+StudentChallenge.prototype.get_run_tests_url = function() {
+    return '/sandbox/api/challenges/' + this.challenge._id + '/tests';
+}
+
+StudentChallenge.prototype.run_snippets = function() {
+    results_popup.console_input_queue = [];
+    this.make_snippet_request();
+}
+
+StudentChallenge.prototype.make_snippet_request = function() {
+    this.save_challenge(() => {
+        this.call_run_snippet_api();
+    });
+}
+
+StudentChallenge.prototype.auto_save = function() {
+    ajax.put('/sandbox/api/saved_attempts/' + this.challenge._id, {'files': this.challenge.files}, function(responseTest) {
+        return
+    }, null, true);
+}
+
+StudentChallenge.prototype.load = function() {
+    var pieces = window.location.pathname.replace(/\/+$/, "").split("/");
+    var challenge_id = pieces[pieces.length-1];
+    ajax.get('/sandbox/api/student_challenges/' + challenge_id, (responseText) => {
+        this.challenge = JSON.parse(responseText);
+        if (this.challenge.browseable) {
+            output_console.tab_id = 'result';
+        }
+        if (this.challenge.files && this.challenge.files.length > 0) {
+            this.selected_file = this.challenge.files[0];
+        }
+        this.reload();
+    });
+}
+
+StudentChallenge.prototype.reload = function() {
+    turtlegui.reload();
+}
+
+StudentChallenge.prototype.submit = function()  {
+    ajax.post('/sandbox/api/submissions', {
+        'files': this.challenge.files,
+        'challenge_id': this.challenge._id,
+    }, (responseText) => {
+        let response = JSON.parse(responseText);
+        if(response.ok){
+            if(this.challenge.submissions){
+                this.challenge.submissions['count']++;
+                this.challenge.submissions['latest_submission_passed'] = response.passed;
+                this.challenge.submissions['latest_submission_time'] = response.submitted;
+            } else {
+                this.challenge.submissions = {
+                    'count': 0,
+                    'latest_submission_passed': response.passed,
+                    'latest_submission_time': response.submitted,
+                }
+            }
+            this.challenge.submissions['latest_submission_passed'] = response.passed;
+            document.getElementById('submit_button').style.display = 'none';
+            document.getElementById('resubmit_button').style.display = 'block';
+            document.getElementById('submission_status').innerText = this.submissionStatus();
+            document.getElementById('latest_submission').innerText = formatTs(response.submitted);
+        }
+        results_popup.hide_results();
+    });
+}
+
+StudentChallenge.prototype.submitted = function() {
+    if(this.challenge.submissions){
+        return this.challenge.submissions.count > 0;
+    }
+    return false;
+}
+
+StudentChallenge.prototype.submissionStatus = function() {
+    switch(this.challenge.submissions.latest_submission_passed){
+        case undefined:
+            return 'Not submitted yet';
+            break;
+        case true:
+            return 'Passed all tests'
+            break;
+        case false:
+            return 'Some tests failed'
+            break;
+        default:
+            return 'Not submitted yet';
+            break;
+    }
+}
+
+StudentChallenge.prototype.horizonal_layout_class = function() {
+    return this.challenge.layout == 'runnable_example' ? 'layout_runnable': '';
+}
+
+
+
+var challenge = new StudentChallenge();
+
+
+var error_popup = {
+    visible: false,
+    error_message: null,
+    server_error: false,
+
+    hide_errors: function() {
+        error_popup.visible = false;
+
+        challenge.reload();
+    },
+}
+
+var results_popup = {
+    visible: false,
+
+    console_input: '',
+    console_input_queue: [],
+
+    results: {
+        print_log: []
+    },
+
+    failure_info_visible: false,
+    failure_info: null,
+    failure_print_log: [],
+
+    show_results: function(results) {
+        results_popup.visible = true;
+        results_popup.results = results;
+
+        challenge.reload();
+    },
+
+    hide_results: function() {
+        results_popup.visible = false;
+        
+        challenge.reload();
+    },
+
+    clean_error_message: function(message) {
+        // Some errors can be encoded, and others may have arbitrary chars in them
+        try {
+            return decodeURIComponent(message);
+        } catch {
+            return message;
+        }
+    },
+
+    show_failure_info: function(result) {
+        results_popup.failure_info_visible = true;
+        results_popup.failure_info = results_popup.clean_error_message(result.error_message);
+        results_popup.failure_hint = result.hint;
+        results_popup.failure_print_log = result.print_log;
+
+        challenge.reload();
+    },
+
+    hide_failure_info: function() {
+        results_popup.failure_info_visible = false;
+
+        challenge.reload();
+    },
+
+    has_code_error: function() {
+        return results_popup.results.compiled_ok == false || results_popup.results.ran_ok == false;
+    },
+    
+    check_esc: function() {
+        if (event.keyCode == 27) {  // "Esc" key
+            if (results_popup.failure_info_visible) {
+                results_popup.failure_info_visible = false;
+                challenge.reload();
+            } else if (results_popup.visible) {
+                results_popup.visible = false;
+                challenge.reload();
+            }
+        }
+    },
+
+    passed_all_tests: function() {
+        let code_errors = results_popup.has_code_error();
+        let test_errors = results_popup.results.results.filter(x => x.result=='fail');
+
+        return !code_errors && test_errors.length == 0;
+    },
+
+    check_input: function() {
+        if (event.keyCode == 13) {  // 'Enter' key
+            results_popup.submit_console_input();
+        }
+    },
+
+    submit_console_input: function() {
+        results_popup.console_input_queue.push(results_popup.console_input);
+        results_popup.console_input = '';
+        challenge.make_snippet_request();
+    },
+
+    last_log: function() {
+        return results_popup.results.print_log ? results_popup.results.print_log[results_popup.results.print_log.length-1] : '';
+    },
+}
+
+
+var model_solution_popup = {
+    show_popup: false,
+    model_solution: null,
+    selected_file: null,
+
+    view_model_solution: function() {
+        ajax.get('/sandbox/api/challenges/' + challenge.challenge._id + '/model_solution', (responseText) => {
+            let response = JSON.parse(responseText);
+            this.model_solution = response;
+            if (this.model_solution.files) {
+                this.selected_file = this.model_solution.files[0];
+            }
+            this.show_popup = true;
+            challenge.reload();
+        });
+    },
+
+    hide_popup: function() {
+        this.show_popup = false;
+        challenge.reload();
+    },
+
+    file_selected_class: function(is_selected) {
+        return (is_selected? 'selected': '');
+    },
+
+    select_file: function(file) {
+        this.selected_file = file;
+        challenge.reload();
+    },
+}
+
+var output_console = {
+    tab_id: 'console',
+    result_url: null,
+
+    console_tab_class: function(tab_id) {
+        return (tab_id == output_console.tab_id ? 'selected': '');
+    },
+
+    select_tab: function(tab_id) {
+        output_console.tab_id = tab_id;
+        challenge.reload();
+    },
+
+    is_tab: function(tab_id) {
+        return tab_id == output_console.tab_id;
+    },
+
+    show_console_results: function(results) {
+        results_popup.results = results;
+        output_console.tab_id = 'console';
+        challenge.reload();
+        if (results.awaiting_input) {
+            document.getElementById('txt_console_input').focus();
+            document.getElementById('txt_console_input').scrollIntoView();
+        }
+    },
+
+    popout_results: function() {
+        if(output_console.result_url){
+            window.open(output_console.result_url)
+        }
+    },
+
+    toggle_instructions: function() {
+        let instructions = document.getElementById('challenge_instructions');
+        let consoleOutputWindow = document.getElementById('challenge_output');
+        let codeWindow = document.getElementById('challenge_code');
+        let left = parseFloat(window.getComputedStyle(instructions).left.replace('%',''));
+        let offset = `${(left)}%`
+        if(instructions.style.display == 'none'){
+            instructions.style.display = 'block';
+            codeWindow.style.right = offset;
+            codeWindow.style.width = offset;
+            consoleOutputWindow.style.right = offset;
+            consoleOutputWindow.style.width = offset;
+        } else {
+            instructions.style.display = 'none';
+            codeWindow.style.right = '0%'
+            codeWindow.style.width = '100%'
+            consoleOutputWindow.style.right = '0%'
+            consoleOutputWindow.style.width = '100%'
+        }
+        resizeEditor();
+    }
+}
+
+
+var auto_save = {
+    last_edited: null,
+    saveInterval: null,
+
+    perform_save: function(){
+        let now = new Date();
+        let difference_in_seconds = (now.getTime() - auto_save.last_edited.getTime()) / 1000;
+        if(difference_in_seconds > 3){
+            clearInterval(auto_save.saveInterval)
+            auto_save.last_edited = null;
+        }
+        challenge.auto_save();
+    },
+
+    editor_change_callback: function() {
+        if(auto_save.last_edited == null){
+            auto_save.saveInterval = setInterval(() => {
+                auto_save.perform_save();
+            }, 3000);
+        }
+        auto_save.last_edited = new Date();
+    }
+}
+
+
+function formatTs(ts){
+    if(ts == undefined){
+        return 'n/a';
+    }
+    return new Date(ts).toISOString().substr(0, 19).replace('T', ' ') + ' GMT';
+}
+
+
+document.addEventListener("DOMContentLoaded", function(){
+    challenge.load();
+    makeDraggable();
+    window.onresize = resizeEditor;
+});

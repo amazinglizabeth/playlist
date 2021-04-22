@@ -1,0 +1,533 @@
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<!--[if lte IE 9]><html class="ie ie9 lte9" lang="en"><![endif]-->
+<!--[if !IE]><!--><html lang="en"><!--<![endif]-->
+<head dir="ltr">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+
+  
+      <title>
+       Sign in or Register | Code Institute
+      </title>
+  
+
+
+  
+
+  <script type="text/javascript" src="/static/js/i18n/en/djangojs.2623d59dd64d.js"></script>
+  <script type="text/javascript" src="/static/js/ie11_find_array.bd1c6dc7a133.js"></script>
+
+  <link rel="icon" type="image/x-icon" href="/static/ci-theme/images/favicon.70793afcf85e.ico" />
+
+  
+  
+
+    <link href="/static/ci-theme/css/lms-style-vendor.68e48093f5dd.css" rel="stylesheet" type="text/css" />
+
+
+
+    
+  
+
+    <link href="/static/ci-theme/css/lms-main-v1.18d6047e3b7c.css" rel="stylesheet" type="text/css" />
+
+
+
+
+    
+    
+<script type="text/javascript" src="/static/js/lms-base-vendor.188b06b0a06d.js" charset="utf-8"></script>
+
+
+    
+    
+<script type="text/javascript" src="/static/js/lms-base-application.2062f84b79fa.js" charset="utf-8"></script>
+
+
+
+  
+    
+    
+    <script type="text/javascript" src="/static/bundles/commons.2d5b35ea408c41f2ad74.c791b10ba6f0.js" ></script>
+
+
+
+  <script>
+    window.baseUrl = "/static/";
+    (function (require) {
+      require.config({
+          baseUrl: window.baseUrl
+      });
+    }).call(this, require || RequireJS.require);
+  </script>
+  <script type="text/javascript" src="/static/lms/js/require-config.45fcc8932454.js"></script>
+  
+    <script type="text/javascript">
+        (function (require) {
+          require.config({
+              paths: {
+                'hls': 'common/js/vendor/hls.8f15a0109b05',
+'js/courseware/course_info_events': 'js/courseware/course_info_events.2fc35b57627f',
+'js/views/message_banner': 'js/views/message_banner.bc5a1361d5f5',
+'moment-timezone': 'common/js/vendor/moment-timezone-with-data.60142e6c4416',
+'moment': 'common/js/vendor/moment-with-locales.43ec67e44612',
+'js/courseware/courseware_factory': 'js/courseware/courseware_factory.1504fc10caef',
+'js/courseware/link_clicked_events': 'js/courseware/link_clicked_events',
+'js/groups/views/cohorts_dashboard_factory': 'js/groups/views/cohorts_dashboard_factory.7f46663f97b4',
+'js/dateutil_factory': 'js/dateutil_factory.be68acdff619',
+'js/courseware/accordion_events': 'js/courseware/accordion_events.6064c7809de5',
+'draggabilly': 'js/vendor/draggabilly.26caba6f7187',
+'course_bookmarks/js/views/bookmark_button': 'course_bookmarks/js/views/bookmark_button.d4cfaf3361fa',
+'js/groups/discussions_management/discussions_dashboard_factory': 'js/discussions_management/views/discussions_dashboard_factory.2e10d9097343',
+'js/courseware/toggle_element_visibility': 'js/courseware/toggle_element_visibility.d5f10bc65ed0',
+'js/student_account/logistration_factory': 'js/student_account/logistration_factory.ee02f25dcea2'
+            }
+          });
+        }).call(this, require || RequireJS.require);
+    </script>
+  
+
+  
+  
+
+  
+
+
+  
+
+
+<script type="application/json" id="user-metadata">
+    {"course_end": null, "audit_access_deadline": null, "upgrade_link": null, "schedule_start": null, "course_duration": null, "course_upgrade_deadline": null, "username": "", "program_key_fields": null, "pacing_type": null, "upgrade_price": null, "enrollment_mode": null, "partition_groups": null, "has_non_audit_enrollments": null, "dynamic_upgrade_deadline": null, "user_id": null, "course_id": null, "enrollment_time": null, "forum_roles": null, "course_start": null, "has_staff_access": null}
+</script>
+
+  
+
+  
+
+
+  
+
+
+<!-- dummy Segment -->
+<script type="text/javascript">
+  var analytics = {
+    track: function() { return; },
+    trackLink: function() { return; },
+    pageview: function() { return; },
+    page: function() { return; }
+  };
+</script>
+<!-- end dummy Segment -->
+
+
+  <meta name="path_prefix" content="">
+  
+
+  <meta name="openedx-release-line" content="master" />
+
+
+
+
+  
+  <!--Scripts required for tutor widget -->
+  <script src="/static/ci-theme/js/lessons.ad92d85f9a13.js"></script>
+  <script src="/static/ci-theme/js/intercomapicall.fb113df672c4.js"></script>
+</head>
+
+<body class="ltr  lang_en">
+
+
+<div id="page-prompt"></div>
+  <div class="window-wrap" dir="ltr">
+    
+    <a class="nav-skip sr-only sr-only-focusable" href="#main">Skip to main content</a>
+
+        <!--
+To override this page, add a header.html file in the following
+location: {your_theme}/lms/templates/header/header.html.html.
+
+If you do not wish to override the header, you can simply delete
+this file from your theme's repository.
+-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="global-header ">
+    <div class="main-header">
+        
+
+
+
+
+
+<h1 class="header-logo">
+  <a href="/dashboard">
+    
+    <img  class="logo" src="/static/ci-theme/images/logo.e8a545c07759.png" alt="Code Institute Home Page"/>
+    
+  </a>
+</h1>
+
+        <div class="hamburger-menu" role="button" aria-label=Options Menu aria-expanded="false" aria-controls="mobile-menu" tabindex="0">
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+            <span class="line"></span>
+        </div>
+            
+
+
+
+
+
+
+
+
+<nav class="nav-links" aria-label=Supplemental Links>
+  <div class="main">
+  </div>
+  <div class="secondary">
+    <div>
+    </div>
+  </div>
+</nav>
+
+    </div>
+    <div class="mobile-menu hidden" aria-label=More Options role="menu" id="mobile-menu"></div>
+</header>
+
+
+
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;1,500&display=swap" rel="stylesheet">
+<link href="/static/ci-theme/ci-css/codeinstitute.css" rel="stylesheet" type="text/css" />
+<script src="/static/ci-theme/js/iframes.js"></script>
+
+        
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+    <div class="marketing-hero"></div>
+
+    <div class="content-wrapper main-container" id="content" dir="ltr">
+      
+
+
+
+
+
+
+
+
+
+
+        <script type="text/template" id="account-tpl">
+            <form id="email-change-form" method="post">
+    <label for="new-email"><%- gettext("New Address") %></label>
+    <input id="new-email" type="text" name="new-email" value="" placeholder="xsy@edx.org" data-validate="required email"/>
+    <div id="new-email-status" />
+
+    <label for="password"><%- gettext("Password") %></label>
+    <input id="password" type="password" name="password" value="" data-validate="required"/>
+    <div id="password-status" />
+
+    <div class="submit-button">
+        <input type="submit" id="email-change-submit" value="<%- gettext("Change My Email Address") %>">
+    </div>
+    <div id="request-email-status" />
+
+    <div id="password-reset">
+        <button type="button"><%- gettext("Reset Password") %></button>
+    </div>
+    <div id="password-reset-status" />
+</form>
+
+        </script>
+        <script type="text/template" id="access-tpl">
+            <section id="login-anchor" class="form-type">
+    <div id="login-form" class="form-wrapper <% if ( mode !== 'login' ) { %>hidden<% } %>"></div>
+</section>
+
+<section id="register-anchor" class="form-type">
+    <div id="register-form" class="form-wrapper <% if ( mode !== 'register' ) { %>hidden<% } %>"></div>
+</section>
+
+<section id="password-reset-anchor" class="form-type">
+    <div id="password-reset-form" class="form-wrapper <% if ( mode !== 'reset' ) { %>hidden<% } %>"></div>
+</section>
+
+<section id="institution_login-anchor" class="form-type">
+    <div id="institution_login-form" class="form-wrapper hidden"></div>
+</section>
+
+<section id="hinted-login-anchor" class="form-type">
+    <div id="hinted-login-form" class="form-wrapper <% if ( mode !== 'hinted_login' ) { %>hidden<% } %>"></div>
+</section>
+
+        </script>
+        <script type="text/template" id="form_field-tpl">
+            <div class="form-field <%- type %>-<%- name %>">
+    <% if ( type !== 'checkbox' && type !== 'plaintext') { %>
+        <label for="<%- form %>-<%- name %>">
+            <span class="label-text"><%- label %></span>
+            <% if ( required && type !== 'hidden' ) { %>
+                <span id="<%- form %>-<%- name %>-required-label"
+                    class="label-required <% if ( !requiredStr ) { %>hidden<% } %>">
+                    <% if ( requiredStr ) { %><%- requiredStr %><% }%>
+                </span>
+                <span class="icon fa" id="<%- form %>-<%- name %>-validation-icon" aria-hidden="true"></span>
+            <% } %>
+            <% if ( !required && optionalStr && (type !== 'hidden') ) { %>
+                <span class="label-optional" id="<%- form %>-<%- name %>-optional-label"><%- optionalStr %></span>
+            <% } %>
+        </label>
+        <% if (supplementalLink && supplementalText) { %>
+            <div class="supplemental-link">
+                <a href="<%- supplementalLink %>" rel="noopener" target="_blank"><%- supplementalText %></a>
+            </div>
+        <% } %>
+    <% } %>
+
+    <% if ( type === 'select' ) { %>
+        <select id="<%- form %>-<%- name %>"
+            name="<%- name %>"
+            class="input-inline"
+            <% if ( instructions ) { %>
+            aria-describedby="<%- form %>-<%- name %>-desc <%- form %>-<%- name %>-validation-error"
+            <% } %>
+            <% if ( typeof errorMessages !== 'undefined' ) {
+                _.each(errorMessages, function( msg, type ) {%>
+                    data-errormsg-<%- type %>="<%- msg %>"
+            <%  });
+            } %>
+            <% if ( required ) { %> aria-required="true" required<% } %>
+        >
+            <% _.each(options, function(el) { %>
+                <option value="<%- el.value%>"<% if ( el.default ) { %> data-isdefault="true" selected<% } %>><%- el.name %></option>
+            <% }); %>
+        </select>
+        <span id="<%- form %>-<%- name %>-validation-error" class="tip error" aria-live="assertive">
+            <span class="sr-only"></span>
+            <span id="<%- form %>-<%- name %>-validation-error-msg"></span>
+        </span>
+        <% if ( instructions ) { %> <span class="tip tip-input" id="<%- form %>-<%- name %>-desc"><%- instructions %></span><% } %>
+        <% if (supplementalLink && supplementalText) { %>
+            <div class="supplemental-link">
+                <a href="<%- supplementalLink %>" rel="noopener" target="_blank"><%- supplementalText %></a>
+            </div>
+        <% } %>
+    <% } else if ( type === 'textarea' ) { %>
+        <textarea id="<%- form %>-<%- name %>"
+            type="<%- type %>"
+            name="<%- name %>"
+            class="input-block"
+            <% if ( instructions ) { %>
+            aria-describedby="<%- form %>-<%- name %>-desc <%- form %>-<%- name %>-validation-error"
+            <% } %>
+            <% if ( restrictions.min_length ) { %> minlength="<%- restrictions.min_length %>"<% } %>
+            <% if ( restrictions.max_length ) { %> maxlength="<%- restrictions.max_length %>"<% } %>
+            <% if ( typeof errorMessages !== 'undefined' ) {
+                _.each(errorMessages, function( msg, type ) {%>
+                    data-errormsg-<%- type %>="<%- msg %>"
+            <%  });
+            } %>
+            <% if ( required ) { %> aria-required="true" required<% } %>></textarea>
+        <span id="<%- form %>-<%- name %>-validation-error" class="tip error" aria-live="assertive">
+            <span class="sr-only"></span>
+            <span id="<%- form %>-<%- name %>-validation-error-msg"></span>
+        </span>
+        <% if ( instructions ) { %> <span class="tip tip-input" id="<%- form %>-<%- name %>-desc"><%- instructions %></span><% } %>
+        <% if (supplementalLink && supplementalText) { %>
+            <div class="supplemental-link">
+                <a href="<%- supplementalLink %>" rel="noopener" target="_blank"><%- supplementalText %></a>
+            </div>
+        <% } %>
+    <% } else if (type === 'plaintext' ) { %>
+            <span class="plaintext-field"><%= HtmlUtils.HTML(label) %></span>
+            <input id="<%- form %>-<%- name %>"
+               type="hidden"
+               name="<%- name %>"
+               class="input-block"
+               value="true"
+            />
+    <% } else { %>
+        <% if ( type === 'checkbox' ) { %>
+            <% if (supplementalLink && supplementalText) { %>
+                <div class="supplemental-link">
+                    <a href="<%- supplementalLink %>" rel="noopener" target="_blank"><%- supplementalText %></a>
+                </div>
+            <% } %>
+        <% } %>
+        <input id="<%- form %>-<%- name %>"
+           type="<%- type %>"
+           name="<%- name %>"
+           class="input-block <% if ( type === 'checkbox' ) { %>checkbox<% } %>"
+            <% if ( instructions ) { %>
+            aria-describedby="<%- form %>-<%- name %>-desc <%- form %>-<%- name %>-validation-error"
+            <% } %>
+            <% if ( restrictions.min_length ) { %> minlength="<%- restrictions.min_length %>"<% } %>
+            <% if ( restrictions.max_length ) { %> maxlength="<%- restrictions.max_length %>"<% } %>
+            <% if ( restrictions.readonly )   { %> readonly <% } %>
+            <% if ( required ) { %> required<% } %>
+            <% if ( typeof errorMessages !== 'undefined' ) {
+                _.each(errorMessages, function( msg, type ) {%>
+                    data-errormsg-<%- type %>="<%- msg %>"
+            <%  });
+            } %>
+            <% if ( placeholder ) { %> placeholder="<%- placeholder %>"<% } %>
+            value="<%- defaultValue %>"
+        />
+        <% if ( type === 'checkbox' ) { %>
+            <label for="<%- form %>-<%- name %>">
+                <span class="label-text"><%= HtmlUtils.HTML(label) %></span>
+                <% if ( required && type !== 'hidden' ) { %>
+                    <span id="<%- form %>-<%- name %>-required-label"
+                        class="label-required <% if ( !requiredStr ) { %>hidden<% } %>">
+                        <% if ( requiredStr ) { %><%- requiredStr %><% }%>
+                    </span>
+                    <span class="icon fa" id="<%- form %>-<%- name %>-validation-icon" aria-hidden="true"></span>
+                <% } %>
+                <% if ( !required && optionalStr ) { %>
+                    <span class="label-optional" id="<%- form %>-<%- name %>-optional-label"><%- optionalStr %></span>
+                <% } %>
+            </label>
+        <% } %>
+
+        <span id="<%- form %>-<%- name %>-validation-error" class="tip error" aria-live="assertive">
+            <span class="sr-only"></span>
+            <span id="<%- form %>-<%- name %>-validation-error-msg"><ul class="fa-ul"></ul></span>
+        </span>
+        <% if ( instructions ) { %> <span class="tip tip-input" id="<%- form %>-<%- name %>-desc"><%- instructions %></span><% } %>
+    <% } %>
+
+    <% if( form === 'login' && name === 'password' ) { %>
+            <button type="button" class="field-link form-toggle" data-type="password-reset"><%- gettext("Forgot my password") %></button>
+    <% } %>
+</div>
+
+        </script>
+        <script type="text/template" id="login-tpl">
+            <div class="js-form-feedback" aria-live="assertive" tabindex="-1">
+</div>
+
+<h2 class="text-center"><%- gettext("Sign In") %></h2>
+
+<form id="login" class="login-form" tabindex="-1" method="POST">
+
+    <%= HtmlUtils.HTML(context.fields) %>
+
+    <button type="submit" class="action action-primary action-update js-login login-button"><%- gettext("Sign in") %></button>
+
+</form>
+
+
+        </script>
+        <script type="text/template" id="password_reset-tpl">
+            <div class="js-form-feedback" aria-live="assertive" tabindex="-1">
+</div>
+
+<h2><%- gettext("Password assistance") %></h2>
+
+<form id="password-reset" class="password-reset-form" tabindex="-1" method="POST">
+
+    <p class="action-label"><%- gettext("Please enter your log-in or recovery email address below and we will send you an email with instructions.") %></p>
+
+    <%= HtmlUtils.HTML(fields) %>
+
+    <button type="submit" class="action action-primary action-update js-reset"><%- gettext("Recover my password") %></button>
+</form>
+
+        </script>
+
+<div class="section-bkg-wrapper">
+    <main id="main" aria-label="Content" tabindex="-1">
+        <div id="content-container" class="login-register-content">
+            <div id="login-and-registration-container" class="login-register"></div>
+        </div>
+    </main>
+</div>
+
+      
+    </div>
+
+
+  </div>
+
+  
+  
+    
+    
+      <script type="text/javascript" src="/static/js/student_account/logistration_factory.ee02f25dcea2.js?raw"></script>
+    <script type="text/javascript">
+        (function (require) {
+            require(['js/student_account/logistration_factory'], function (LogistrationFactory) {
+                
+        var options = {"initial_mode": "login", "account_activation_messages": [], "support_link": {}, "password_reset_form_desc": {"method": "post", "submit_url": "/account/password", "fields": [{"placeholder": "Email", "name": "email", "required": true, "errorMessages": {}, "restrictions": {"max_length": 254, "min_length": 3}, "supplementalText": "", "label": "Email", "instructions": "The email address you used to register with Code Institute", "type": "email", "defaultValue": "", "supplementalLink": ""}]}, "is_account_recovery_feature_enabled": false, "account_recovery_messages": [], "login_redirect_url": "/dashboard", "account_creation_allowed": false, "platform_name": "Code Institute", "registration_form_desc": {"method": "post", "submit_url": "/user_api/v2/account/registration/", "fields": [{"placeholder": "", "name": "name", "required": true, "errorMessages": {}, "restrictions": {"max_length": 255}, "supplementalText": "", "label": "Full Name", "instructions": "This name will be used on any certificates that you earn.", "type": "text", "defaultValue": "", "supplementalLink": ""}, {"placeholder": "", "name": "username", "required": true, "errorMessages": {}, "restrictions": {"max_length": 30, "min_length": 2}, "supplementalText": "", "label": "Public Username", "instructions": "The name that will identify you in your courses. It cannot be changed later.", "type": "text", "defaultValue": "", "supplementalLink": ""}, {"placeholder": "", "name": "email", "required": true, "errorMessages": {}, "restrictions": {"max_length": 254, "min_length": 3}, "supplementalText": "", "label": "Email", "instructions": "This is what you will use to login.", "type": "email", "defaultValue": "", "supplementalLink": ""}, {"placeholder": "", "name": "password", "required": true, "errorMessages": {}, "restrictions": {"max_length": 75, "min_length": 2}, "supplementalText": "", "label": "Password", "instructions": "Your password must contain at least 2 characters.", "type": "password", "defaultValue": "", "supplementalLink": ""}, {"name": "gender", "options": [{"name": "--", "default": true, "value": ""}, {"name": "Male", "default": false, "value": "m"}, {"name": "Female", "default": false, "value": "f"}, {"name": "Other/Prefer Not to Say", "default": false, "value": "o"}], "supplementalLink": "", "defaultValue": "", "required": false, "errorMessages": {}, "restrictions": {}, "supplementalText": "", "label": "Gender", "instructions": "", "type": "select", "placeholder": ""}, {"name": "year_of_birth", "options": [{"name": "--", "default": true, "value": ""}, {"name": "2021", "default": false, "value": "2021"}, {"name": "2020", "default": false, "value": "2020"}, {"name": "2019", "default": false, "value": "2019"}, {"name": "2018", "default": false, "value": "2018"}, {"name": "2017", "default": false, "value": "2017"}, {"name": "2016", "default": false, "value": "2016"}, {"name": "2015", "default": false, "value": "2015"}, {"name": "2014", "default": false, "value": "2014"}, {"name": "2013", "default": false, "value": "2013"}, {"name": "2012", "default": false, "value": "2012"}, {"name": "2011", "default": false, "value": "2011"}, {"name": "2010", "default": false, "value": "2010"}, {"name": "2009", "default": false, "value": "2009"}, {"name": "2008", "default": false, "value": "2008"}, {"name": "2007", "default": false, "value": "2007"}, {"name": "2006", "default": false, "value": "2006"}, {"name": "2005", "default": false, "value": "2005"}, {"name": "2004", "default": false, "value": "2004"}, {"name": "2003", "default": false, "value": "2003"}, {"name": "2002", "default": false, "value": "2002"}, {"name": "2001", "default": false, "value": "2001"}, {"name": "2000", "default": false, "value": "2000"}, {"name": "1999", "default": false, "value": "1999"}, {"name": "1998", "default": false, "value": "1998"}, {"name": "1997", "default": false, "value": "1997"}, {"name": "1996", "default": false, "value": "1996"}, {"name": "1995", "default": false, "value": "1995"}, {"name": "1994", "default": false, "value": "1994"}, {"name": "1993", "default": false, "value": "1993"}, {"name": "1992", "default": false, "value": "1992"}, {"name": "1991", "default": false, "value": "1991"}, {"name": "1990", "default": false, "value": "1990"}, {"name": "1989", "default": false, "value": "1989"}, {"name": "1988", "default": false, "value": "1988"}, {"name": "1987", "default": false, "value": "1987"}, {"name": "1986", "default": false, "value": "1986"}, {"name": "1985", "default": false, "value": "1985"}, {"name": "1984", "default": false, "value": "1984"}, {"name": "1983", "default": false, "value": "1983"}, {"name": "1982", "default": false, "value": "1982"}, {"name": "1981", "default": false, "value": "1981"}, {"name": "1980", "default": false, "value": "1980"}, {"name": "1979", "default": false, "value": "1979"}, {"name": "1978", "default": false, "value": "1978"}, {"name": "1977", "default": false, "value": "1977"}, {"name": "1976", "default": false, "value": "1976"}, {"name": "1975", "default": false, "value": "1975"}, {"name": "1974", "default": false, "value": "1974"}, {"name": "1973", "default": false, "value": "1973"}, {"name": "1972", "default": false, "value": "1972"}, {"name": "1971", "default": false, "value": "1971"}, {"name": "1970", "default": false, "value": "1970"}, {"name": "1969", "default": false, "value": "1969"}, {"name": "1968", "default": false, "value": "1968"}, {"name": "1967", "default": false, "value": "1967"}, {"name": "1966", "default": false, "value": "1966"}, {"name": "1965", "default": false, "value": "1965"}, {"name": "1964", "default": false, "value": "1964"}, {"name": "1963", "default": false, "value": "1963"}, {"name": "1962", "default": false, "value": "1962"}, {"name": "1961", "default": false, "value": "1961"}, {"name": "1960", "default": false, "value": "1960"}, {"name": "1959", "default": false, "value": "1959"}, {"name": "1958", "default": false, "value": "1958"}, {"name": "1957", "default": false, "value": "1957"}, {"name": "1956", "default": false, "value": "1956"}, {"name": "1955", "default": false, "value": "1955"}, {"name": "1954", "default": false, "value": "1954"}, {"name": "1953", "default": false, "value": "1953"}, {"name": "1952", "default": false, "value": "1952"}, {"name": "1951", "default": false, "value": "1951"}, {"name": "1950", "default": false, "value": "1950"}, {"name": "1949", "default": false, "value": "1949"}, {"name": "1948", "default": false, "value": "1948"}, {"name": "1947", "default": false, "value": "1947"}, {"name": "1946", "default": false, "value": "1946"}, {"name": "1945", "default": false, "value": "1945"}, {"name": "1944", "default": false, "value": "1944"}, {"name": "1943", "default": false, "value": "1943"}, {"name": "1942", "default": false, "value": "1942"}, {"name": "1941", "default": false, "value": "1941"}, {"name": "1940", "default": false, "value": "1940"}, {"name": "1939", "default": false, "value": "1939"}, {"name": "1938", "default": false, "value": "1938"}, {"name": "1937", "default": false, "value": "1937"}, {"name": "1936", "default": false, "value": "1936"}, {"name": "1935", "default": false, "value": "1935"}, {"name": "1934", "default": false, "value": "1934"}, {"name": "1933", "default": false, "value": "1933"}, {"name": "1932", "default": false, "value": "1932"}, {"name": "1931", "default": false, "value": "1931"}, {"name": "1930", "default": false, "value": "1930"}, {"name": "1929", "default": false, "value": "1929"}, {"name": "1928", "default": false, "value": "1928"}, {"name": "1927", "default": false, "value": "1927"}, {"name": "1926", "default": false, "value": "1926"}, {"name": "1925", "default": false, "value": "1925"}, {"name": "1924", "default": false, "value": "1924"}, {"name": "1923", "default": false, "value": "1923"}, {"name": "1922", "default": false, "value": "1922"}, {"name": "1921", "default": false, "value": "1921"}, {"name": "1920", "default": false, "value": "1920"}, {"name": "1919", "default": false, "value": "1919"}, {"name": "1918", "default": false, "value": "1918"}, {"name": "1917", "default": false, "value": "1917"}, {"name": "1916", "default": false, "value": "1916"}, {"name": "1915", "default": false, "value": "1915"}, {"name": "1914", "default": false, "value": "1914"}, {"name": "1913", "default": false, "value": "1913"}, {"name": "1912", "default": false, "value": "1912"}, {"name": "1911", "default": false, "value": "1911"}, {"name": "1910", "default": false, "value": "1910"}, {"name": "1909", "default": false, "value": "1909"}, {"name": "1908", "default": false, "value": "1908"}, {"name": "1907", "default": false, "value": "1907"}, {"name": "1906", "default": false, "value": "1906"}, {"name": "1905", "default": false, "value": "1905"}, {"name": "1904", "default": false, "value": "1904"}, {"name": "1903", "default": false, "value": "1903"}, {"name": "1902", "default": false, "value": "1902"}], "supplementalLink": "", "defaultValue": "", "required": false, "errorMessages": {}, "restrictions": {}, "supplementalText": "", "label": "Year of birth", "instructions": "", "type": "select", "placeholder": ""}, {"name": "level_of_education", "options": [{"name": "--", "default": true, "value": ""}, {"name": "Doctorate", "default": false, "value": "p"}, {"name": "Master's or professional degree", "default": false, "value": "m"}, {"name": "Bachelor's degree", "default": false, "value": "b"}, {"name": "Associate degree", "default": false, "value": "a"}, {"name": "Secondary/high school", "default": false, "value": "hs"}, {"name": "Junior secondary/junior high/middle school", "default": false, "value": "jhs"}, {"name": "Elementary/primary school", "default": false, "value": "el"}, {"name": "No formal education", "default": false, "value": "none"}, {"name": "Other education", "default": false, "value": "other"}], "supplementalLink": "", "defaultValue": "", "required": false, "errorMessages": {"required": "Select the highest level of education you have completed."}, "restrictions": {}, "supplementalText": "", "label": "Highest level of education completed", "instructions": "", "type": "select", "placeholder": ""}, {"placeholder": "", "name": "mailing_address", "required": false, "errorMessages": {"required": "Enter your mailing address."}, "restrictions": {}, "supplementalText": "", "label": "Mailing address", "instructions": "", "type": "textarea", "defaultValue": "", "supplementalLink": ""}, {"placeholder": "", "name": "goals", "required": false, "errorMessages": {"required": "Tell us your goals."}, "restrictions": {}, "supplementalText": "", "label": "Tell us why you're interested in Code Institute", "instructions": "", "type": "textarea", "defaultValue": "", "supplementalLink": ""}, {"placeholder": "", "name": "honor_code", "required": true, "errorMessages": {"required": "You must agree to the Code Institute Terms of Service and Honor Code"}, "restrictions": {}, "supplementalText": "", "label": "By creating an account, you agree to the                   \u003ca href='/honor' rel='noopener' target='_blank'\u003eTerms of Service and Honor Code\u003c/a\u003e                   and you acknowledge that Code Institute and each Member process your personal data in accordance                   with the \u003ca href='/privacy' rel='noopener' target='_blank'\u003ePrivacy Policy\u003c/a\u003e.", "instructions": "", "type": "plaintext", "defaultValue": false, "supplementalLink": ""}]}, "enterprise_slug_login_url": null, "third_party_auth_hint": "", "is_multiple_user_enterprises_feature_enabled": false, "third_party_auth": {"syncLearnerProfileData": false, "secondaryProviders": [], "errorMessage": null, "pipeline_user_details": {}, "registerFormSubmitButtonText": "Create Account", "providers": [], "finishAuthUrl": null, "currentProvider": null}, "password_reset_support_link": "mailto: studentcare@codeinstitute.net", "login_form_desc": {"method": "post", "submit_url": "/user_api/v1/account/login_session/", "fields": [{"placeholder": "Email", "name": "email", "required": true, "errorMessages": {}, "restrictions": {"max_length": 254, "min_length": 3}, "supplementalText": "", "label": "Email", "instructions": "The email address you used to register with Code Institute", "type": "email", "defaultValue": "", "supplementalLink": ""}, {"placeholder": "Password", "name": "password", "required": true, "errorMessages": {}, "restrictions": {"max_length": 5000}, "supplementalText": "", "label": "Password", "instructions": "", "type": "password", "defaultValue": "", "supplementalLink": ""}]}};
+        LogistrationFactory(options);
+        if ('newrelic' in window) {
+            newrelic.finished();
+            // Because of a New Relic bug, the finished() event doesn't show up
+            // in Insights, so we have to make a new PageAction that is basically
+            // the same thing. We still want newrelic.finished() for session
+            // traces though.
+            newrelic.addPageAction('xfinished');
+        }
+    
+            });
+        }).call(this, require || RequireJS.require);
+    </script>
+
+
+
+  
+
+
+
+  <script type="text/javascript" src="/static/js/vendor/noreferrer.aa62a3e70ffa.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/static/js/utils/navigation.08930e16ab3d.js" charset="utf-8"></script>
+  <script type="text/javascript" src="/static/js/header/header.309a1243e175.js"></script>
+  
+  <script type="text/javascript" src="/static/js/src/jquery_extend_patch.54dddef28d15.js"></script>
+</body>
+</html>
+
+

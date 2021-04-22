@@ -1,0 +1,64 @@
+
+var ajax = {
+    loading: 0,
+
+    http_call: function(method, url, data, success, error, noloading, retries) {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4) {
+                try {
+                    if (this.status >= 200 && this.status < 300) {
+                        if (success) {
+                            success(this.responseText, this);
+                        }
+                    }
+                    else if ((this.status == 502 || this.status == 504) && this.retries < 4) {
+                        console.log('Got '+this.status+', Retrying after ' + this.retries);
+                        ajax.loading += 1;
+                        setTimeout(() => {
+                            ajax.http_call(method, url, data, success, error, noloading, this.retries + 1);
+                            ajax.loading -= 1;
+                        }, this.retries * 1000);
+                    }
+                    else if (error) {
+                        error(this);
+                    } else {
+                        console.log("Error loading " + url + " - " + this.status + " " + this.statusText);
+                    }
+                } finally {
+                    if (!noloading) {
+                        ajax.loading -= 1;
+                        turtlegui.reload();
+                    }
+                }
+            }
+        };
+        xmlhttp.retries = retries ? retries : 1;
+        xmlhttp.open(method, url, true);
+        if (data) {
+            xmlhttp.setRequestHeader("Content-Type", "application/json; utf-8");
+            xmlhttp.send(JSON.stringify(data));
+        } else {
+            xmlhttp.send();
+        }
+        if (!noloading) {
+            ajax.loading += 1;
+            turtlegui.reload();
+        }
+    },
+    get: function(url, success, error, noloading) {
+        ajax.http_call("GET", url, null, success, error, noloading);
+    },
+    post: function(url, data, success, error, noloading) {
+        ajax.http_call("POST", url, data, success, error, noloading);
+    },
+    put: function(url, data, success, error, noloading) {
+        ajax.http_call("PUT", url, data, success, error, noloading);
+    },
+    patch: function(url, data, success, error, noloading) {
+        ajax.http_call("PATCH", url, data, success, error, noloading);
+    },
+    delete: function(url, success, error, noloading) {
+        ajax.http_call("DELETE", url, null, success, error, noloading);
+    }
+}

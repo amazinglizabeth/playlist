@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewpoint" content="width=device-width, initial scale=1.0">
+		</head>
+	<title>AMAZING BLOG</title>
+	<meta name="description" content="Amazing blog by lizabeth media">
+	<meta name="keyords" content="web design blog,web dev blog,amazing blog,amazing lizabeth">
+	<style type="text/css">
+	#main-header {
+	text-align:center;
+	background-color:yellow;
+	color:blue;
+	padding:5px;
+}
+
+   #main-footer{
+   text-align:center;
+   font-size:18px;
+   color:blue;
+   background-color: yellow;
+}
+body{
+	font-family:georgia;
+	font-size: 10px
+}
+h3{
+	color:yellow;
+}
+small{
+	color:white;
+}
+a{
+	color:lightblue;
+}
+
+.item1 { grid-area: header;
+}
+.item2 { grid-area: menu; }
+.item3 { grid-area: main; }
+.item4 { grid-area: right; }
+.item5 { grid-area: footer; }
+
+.grid-container {
+  display: grid;
+  grid-template-areas:
+    'header header header header header header'
+    'menu main main main right right'
+    'menu footer footer footer footer footer';
+  grid-gap: 20px;
+  background-color: #2196F3;
+  padding: 10px;
+  font-size: auto;
+}
+
+.grid-container > div {
+  background-color: rgba(25, 55, 95, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 15px;
+}
+aside{
+	text-align: left;
+	float: left;
+}
+</style>
+</head>
+
+<body>
+<a href="index.html">go to website</a>
+<br>
+<br>
+<div class="grid-container">
+	<div class="item1">
+<header id="main-header">
+	<h1>AMAZING_LIZABETH</h1>
+</header>
+</div>
+<div class="item2">
+<section>
+	<article class="post">
+		<h3>MY QUOTES<br>
+		<small>posted by liz on march 2</small>
+	  <ul>
+	  	<li>Your corrections at times might also be a mistake.</li>
+	  	<li>Not all mistakes are correctable.</li>
+	  	<li>Many eyes look, but few eyes see.</li>
+	  	<li>light shines brighter in darkness.</li>
+	  	<li>Hardworking alone cannot eradicate poverty.</li>
+	  	<li>You can't be rich until you determine not to be poor.</li>
+	  	<li>World may not give you all you want, but don't let world take all you have.</li>
+	  	<li>Learn to get things right, in order to be alright.</li>
+	  	<li>The best person that can make you happy always is yourself,don't let you happiness be determined by human.</li>
+	  </ul>
+	  <a href="post.html">read more</a>
+	  </h3>
+	</article>
+</section>
+</div>
+
+<div class="item3">
+	<article class="post">
+		<h3>FACTS ABOUT NIGERIANS<br>
+		<small>posted by liz on march 23</small>
+	 <ul>
+	 	<li>The best alarm is a Nigerian mother.<br>You ask her to wake you by 6am,she wake you by by 5am and tell you it is almost 7am.</li>
+	 	<li>The worst person to report is a Nigerian sibling.<br>You report them to your parent,then teaching you your assignment will be as if you've failed a scolarship examination</li>
+	 	<li>The dangerous to offend is a Nigerian police.<br>You offend them!,then you have to explain why you are carrying a black bag and also wear a black shoe at the same time.</li>
+	 	<li>The risky to trust is a Nigerian neighbour.<br>They help you aplologise to your parent for your offense and at the same time telling them the measures of punishment that you deserve. </li>
+
+	 </ul>
+	<a href="post.html">read more</a>
+	</h3>
+</article>
+</div>
+
+<div class="item4">
+<article class="post">
+		<h3>SELF EDUCATION<br>
+		<small>posted by liz on april 15</small>
+	  <ul>
+	  	<li>Learn to discover yourself.</li>
+	  	<li>Don't let your knowledge be limited, learn more.</li>
+	  	<li>Learn to love yourself, no matter how much you are hurt.</li>
+	  	<li>Never ignore good opportunities, even when not useful at that moment.</li>
+	  	<li>Be humble, no matter what you've achieved there is someone that has more.</li>
+	  </ul>
+	<a href="post.html">read more</a>
+	</h3>
+</article>
+</section>
+</div>
+</div>
+<div class="item5">
+<footer id="main-footer">
+	<p>copyright &copy; 2021,Amazing Blog</p>
+</footer>
+</body>
+</html>

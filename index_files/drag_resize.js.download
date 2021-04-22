@@ -1,0 +1,81 @@
+
+function makeDraggable(){
+    let instructionsWindow = document.getElementById('challenge_instructions');
+    let consoleOutputWindow = document.getElementById('challenge_output');
+    let codeWindow = document.getElementById('challenge_code');
+    var pressed = false;
+    var startX, startY, startLeft, startRight, startTop, startBottom, horizontal;
+
+    instructionsWindow.addEventListener('mousedown', function(e) {
+        if (e.target.classList.contains('allow_drag')) {
+            let computedElementStyles = window.getComputedStyle(e.target);
+            horizontal = true;
+            pressed = true;
+            startX = e.pageX;
+            startLeft = parseInt(computedElementStyles.left.replace('px',''));
+            startRight = parseInt(computedElementStyles.left.replace('px',''));
+        }
+    });
+
+    consoleOutputWindow.addEventListener('mousedown', function(e) {
+        if (e.target.classList.contains('allow_drag')) {
+            let computedElementStyles = window.getComputedStyle(e.target)
+            horizontal = false;
+            pressed = true;
+            startY = e.pageY;
+            startTop = parseInt(computedElementStyles.top.replace('px',''));
+            startBottom = parseInt(computedElementStyles.bottom.replace('px',''));
+        }
+    });
+
+    document.addEventListener('mousemove', function(e) {
+        let horizontalDragLimit = 320;
+        let verticalDragLimit = 200;
+        let height = window.innerHeight;
+        let width = window.innerWidth;
+
+        if(pressed && horizontal) {
+            e.preventDefault();
+            let leftOffset = startLeft + (e.pageX - startX);
+            if(leftOffset > window.innerWidth - horizontalDragLimit){
+                leftOffset = window.innerWidth - horizontalDragLimit;
+            } else if(leftOffset < horizontalDragLimit){
+                leftOffset = horizontalDragLimit;
+            }
+
+            let rightOffset = window.innerWidth - leftOffset;
+            instructionsWindow.style.left = (leftOffset / width)*100 + '%';
+            codeWindow.style.right = (rightOffset / width)*100 + '%';
+            codeWindow.style.width = (leftOffset / width)*100 + '%';
+            consoleOutputWindow.style.right = (rightOffset / width)*100 + '%';
+            consoleOutputWindow.style.width = (leftOffset / width)*100 + '%';
+            resizeEditor();
+
+        } else if(pressed && !horizontal){
+            e.preventDefault();
+            let topOffset = startTop + (e.pageY-startY);
+            if(topOffset > window.innerHeight - verticalDragLimit) {
+                topOffset = window.innerHeight - verticalDragLimit;
+            } else if(topOffset < verticalDragLimit) {
+                topOffset = verticalDragLimit;
+            }
+
+            let bottomOffset = window.innerHeight - topOffset;
+            consoleOutputWindow.style.top = (topOffset / height) * 100 + '%';
+            codeWindow.style.bottom = (bottomOffset / height) * 100 + '%';
+            codeWindow.style.height = (topOffset / height) * 100 + '%';
+            resizeEditor();
+        }
+    });
+
+    document.addEventListener('mouseup', function(e) {
+        if(pressed) {
+            pressed = false;
+        }
+    });
+}
+
+function resizeEditor(){
+        let editor = ace.edit("code_editor");
+        editor.resize();
+}

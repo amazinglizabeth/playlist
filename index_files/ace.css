@@ -1,0 +1,9 @@
+div.challenge_instructions div {
+    white-space: normal;
+    line-height: 24px;
+}
+
+div.challenge_output div.console div.line,
+div.challenge_output div.console div.consoleerror{
+    white-space: pre-wrap;
+}
