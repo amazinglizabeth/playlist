@@ -3,17 +3,18 @@
 	<html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewpoint" content="width=device-width, initial scale=1.0">
+		<meta name="viewport" content="width=device-width, initial scale=1.0">
 		<link rel="stylesheet" href="index.css">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+		<script src="script.js" defer></script>
 	</head>
 	<body>
    <div class="parent">
 	    		<div class="mid-image">
 	    		<img src="Rectangle 12.png">
 	    		</div>
-	   	<div class="side-bar">
+	   	<div class="side-bar" id="sidebar">
 	      	<div class="menu">
 		      <h3 class="header">MENU</h3>
 		     	<p class="link">
@@ -86,17 +87,24 @@
 			    		https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRg3laDbkHtRyrw9-6zqVmDBrEi4Jb2xrTuyw&usqp=CAU" width="20px" height="20px" />
 	    	    </div>
 	    	    <div class="side-header">
-		    		<div class="image">
-		    		   <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRRUBS8h_1r8GztjyeLzGwLnW-lp9TtFldg&usqp=CAU"/>
-		    		</div>
+	    	      <div class="sideheader">
+		    		  <div class="image">
+		    			<div>
+		    		      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRRUBS8h_1r8GztjyeLzGwLnW-lp9TtFldg&usqp=CAU"/>
+		    		    </div>
+		    		  </div>
 	    	        <div>
 	    			<p class="text">phir le aya dil</p>
 	    			<p>Arjit Singh</p>
 	    		    </div>
+	    		  </div>
 		    		<div class="image2">
 		    			<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmoa3smwyGbJjxAgV-q7Cl0GXLLyHwQqQEcQ&usqp=CAU"/>
 		    		</div>
 		    	</div>
+	    		<button type="button" id="sidebar-button">
+	    			Menu
+	    		</button>
 	    	</div>
 	    	<div class="center">
 	    		<div class="row1">
@@ -225,37 +233,37 @@
 	    </div>
     </div>
     <footer class="main-footer">
-    	    <div class="footer">
-		    		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRRUBS8h_1r8GztjyeLzGwLnW-lp9TtFldg&usqp=CAU" class="footer-image" />
-	    	        <div>
-	    			<p class="text">phir le aya dil</p>
-	    			<p>Arjit Singh</p>
-	    		    </div>
-	    		    <div class="icons">
-	    		    	<img src="iconmonstr-arrow-41 2.png"/>
-	    		    	<img src="iconmonstr-media-control-3 1.png"/>
-	    		    	<img src="Vector.png"/>
-	    		    </div>
-	    		    <div>
-	    		    	<p class="duration">2:15</p>
-	    		    </div>
-	    		    <div class="progress" id="duration">
-    		    		<div class="progress-line">
-    		    			<div class="progress-point"></div>
-    		    		</div>
-    		    	</div>
-    		    		<div>
-    		    			<p class="durations">5:23</p>
-    		    		</div>
-    		    	<div class="sound">
-    		    	    <img src="iconmonstr-sound-thin 1.png"/>
-    		    	</div>
-	    		    <div class="progress" id="volume">
-    		    		<div class="progress-line">
-    		    			<div class="progress-point"></div>
-    		    		</div>
-    		    	</div>
+	    <div class="footer">
+    		<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmRRUBS8h_1r8GztjyeLzGwLnW-lp9TtFldg&usqp=CAU" class="footer-image" />
+	        <div class="footer-song-title">
+    			<p class="text">phir le aya dil</p>
+    			<p>Arjit Singh</p>
 		    </div>
+		    <div class="icons">
+		    	<img src="iconmonstr-arrow-41 2.png"/>
+		    	<img src="iconmonstr-media-control-3 1.png"/>
+		    	<img src="Vector.png"/>
+		    </div>
+		    <div>
+		    	<p class="duration">2:15</p>
+		    </div>
+		    <div class="progress" id="duration">
+	    		<div class="progress-line">
+	    			<div class="progress-point"></div>
+	    		</div>
+	    	</div>
+	    		<div>
+	    			<p class="durations">5:23</p>
+	    		</div>
+	    	<div class="sound">
+	    	    <img src="iconmonstr-sound-thin 1.png"/>
+	    	</div>
+		    <div class="progress" id="volume">
+	    		<div class="progress-line">
+	    			<div class="progress-point"></div>
+	    		</div>
+	    	</div>
+	    </div>
     </footer>
 </body>
  </html>
